@@ -32,7 +32,8 @@ void *ARP_Relay(void*)
     SnifferConfiguration config;
     config.set_immediate_mode(true);
     Sniffer sniffer(dev,config);
-
+    
+    
     while(1)
     {
         PDU *pkt = sniffer.next_packet();
@@ -46,7 +47,7 @@ void *ARP_Relay(void*)
                 {
                     eth->src_addr(info.hw_addr);
                     eth->dst_addr(gw_hw);
-                    pkt->send(Relay_Sender,dev);
+                    pkt->send(Relay_Sender,dev);                       
                 }
 
                 if(eth->src_addr() == gw_hw)
